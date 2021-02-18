@@ -31,10 +31,11 @@ BEGIN {
 
 cat $bedfilelist | tail -n+2 | awk -v d=$bedfiledir '$0{print d"/"$0".bed"}' | parallel -j6 $basedir/annotate_snps.py --bfile $bfile --chr $chr --annot-bed {} --only-annot --out $bfilename/{/.}
 cat $bedfilelist | awk -v d=$bfilename '$0{print d"/"$0".annot"}' | xargs paste -d$'\t' | gzip -c > baseline.$chr.annot.gz
-mv baseline.$chr.annot.gz /home/oleksanf/vmshare/data/HRC_EUR_qc/baseline_v2.2_hrc_chr${chr}_EUR_qc.annot.gz
+mv baseline.$chr.annot.gz /home/oleksanf/vmshare/data/UKBDATA/projects/plsa_mixer/ukb_genetics_qc/ukb_bed/baseline_v2.2_ukb_imp_chr${chr}_v3_qc.annot.gz
 
 #$ldsc --l2 --bfile $bfile --ld-wind-cm 1 --annot baseline.$chr.annot.gz --out baseline.$chr --print-snps $snps/hm.$chr.snp
 
 # submission command:
 # source activate bx
-#for chr in $(seq 22); do echo "./baseline_v2.2_hrc.sh /home/oleksanf/vmshare/data/HRC_EUR_qc/hrc_chr${chr}_EUR_qc ${chr}"; done
+#for chr in $(seq 22); do echo "./baseline_v2.2_ukb337.sh /home/oleksanf/vmshare/data/UKBDATA/projects/plsa_mixer/ukb_genetics_qc/ukb_bed/ukb_imp_chr${chr}_v3_qc ${chr}"; done
+
