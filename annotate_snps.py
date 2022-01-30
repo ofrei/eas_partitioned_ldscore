@@ -49,6 +49,7 @@ if __name__ == '__main__':
     parser.add_argument('--only-annot', default=False, action='store_true')
     parser.add_argument('--extend-bp', default=0, type=int)
     args = parser.parse_args()
+    print(args)
 
     if args.annot_bed_list is not None:
         args.annot_bed = []
